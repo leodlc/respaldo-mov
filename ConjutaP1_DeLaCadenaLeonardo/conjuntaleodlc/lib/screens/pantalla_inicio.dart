@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart'; // Import necesario para FilteringTextInputFormatter
 import '../logic/logica_grupo.dart';
 import 'pantalla_resultado.dart';
 
@@ -58,6 +59,9 @@ class _PantallaInicioState extends State<PantallaInicio> {
             SizedBox(height: 30),
             TextField(
               controller: _controladorNombre,
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]')),
+              ],
               decoration: InputDecoration(
                 labelText: 'Nombre',
                 labelStyle:
@@ -126,7 +130,8 @@ class _PantallaInicioState extends State<PantallaInicio> {
                 ),
                 padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
               ),
-              child: Text('Mostrar Grupo'),
+              child:
+                  Text('Mostrar Grupo', style: TextStyle(color: Colors.black)),
             ),
           ],
         ),

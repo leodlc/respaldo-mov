@@ -14,16 +14,18 @@ class PantallaResultado extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Elegir el ícono y color según el grupo
+    // Elegir el color según el sexo
+    final colorSexo = sexo == 'Mujer'
+        ? Color(0xFFFFC0CB)
+        : Color(0xFF87CEEB); // Rosado para mujer, azul para hombre
     final iconoGrupo = grupo == 'A'
         ? Icons.star // Ícono para el grupo A
         : Icons.group; // Ícono para el grupo B
-    final colorGrupo = grupo == 'A' ? Color(0xFF5DEBD7) : Color(0xFF38C9BB);
 
     return Scaffold(
       appBar: AppBar(
         title: Text('Resultado'),
-        backgroundColor: Color(0xFF5DEBD7), // Color principal
+        backgroundColor: colorSexo, // Cambiar color del AppBar según el sexo
       ),
       backgroundColor: Color(0xFFF2FDFD), // Fondo claro
       body: Center(
@@ -33,7 +35,7 @@ class PantallaResultado extends StatelessWidget {
             Icon(
               iconoGrupo,
               size: 100,
-              color: colorGrupo, // Color asociado al grupo
+              color: colorSexo, // Ícono con el color según el sexo
             ),
             SizedBox(height: 20),
             Text(
@@ -41,7 +43,7 @@ class PantallaResultado extends StatelessWidget {
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF5DEBD7),
+                color: colorSexo, // Texto destacado con color según el sexo
               ),
             ),
             SizedBox(height: 20),
@@ -50,7 +52,9 @@ class PantallaResultado extends StatelessWidget {
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
-                color: colorGrupo,
+                color: grupo == 'A'
+                    ? Color(0xFF5DEBD7)
+                    : Color(0xFF38C9BB), // Color del grupo
               ),
             ),
             SizedBox(height: 30),
@@ -59,14 +63,14 @@ class PantallaResultado extends StatelessWidget {
                 Navigator.pop(context);
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF5DEBD7), // Color principal
+                backgroundColor: colorSexo, // Botón con el color según el sexo
                 foregroundColor: Colors.white, // Texto blanco
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
                 padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
               ),
-              child: Text('Volver'),
+              child: Text('Volver', style: TextStyle(color: Colors.black)),
             ),
           ],
         ),
